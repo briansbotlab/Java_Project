@@ -1,6 +1,6 @@
 # UserManagerSystem
 
-<a href="https://www.youtube.com/playlist?list=PLnnyt-OFoEgmnwz9CzjJzeb5JOht3kvHQ">點我觀看展示影片</a>
+<a href="https://youtu.be/RW9yyF-gluw">點我觀看展示影片</a>
 
 ![7](https://github.com/briansbotlab/Java_Project/blob/master/userMangementSystem/img/7.png)<br/>
 上圖為整個系統的介面關聯圖。
