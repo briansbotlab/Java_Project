@@ -8,6 +8,19 @@
 
 本系統利用Java進行撰寫，並且利用sqlite進行資料的新增、刪除、修改以及查詢。
 
+預設的使用者名稱:SuperUser
+預設的使用者帳號:root
+預設的使用者名稱:root
+預設的使用者等級:3
+
+使用者等級一共分為3階
+
+LEVEL l : 一般使用者。
+
+LEVEL 2 :進階使用者。可以將一般使用者等級提高。
+
+LEVEL 3 :超級使用者，預設帳戶即為超級使用者，可以提高或降低使用者等級，以及刪除使用者。
+
 本系統的使用者介面共有6個分別如下:
 
 
@@ -30,4 +43,4 @@
 ![6](https://github.com/briansbotlab/Java_Project/blob/master/userMangementSystem/img/6.PNG)<br/>
 
 7.修改密碼<br/>
-![7](https://github.com/briansbotlab/Java_Project/blob/master/userMangementSystem/img/7.PNG)<br/>
+![7](https://github.com/briansbotlab/Java_Project/blob/master/userMangementSystem/img/7.png)<br/>
