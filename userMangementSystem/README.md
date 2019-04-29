@@ -1,8 +1,8 @@
 # UserManagerSystem
 
-<a href="https://youtu.be/RW9yyF-gluw">點我觀看展示影片</a>
+<a href="https://youtu.be/wZNvYtuvUXg">點我觀看展示影片</a>
 
-![7](https://github.com/briansbotlab/Java_Project/blob/master/userMangementSystem/img/7.png)<br/>
+![8](https://github.com/briansbotlab/Java_Project/blob/master/userMangementSystem/img/8.png)<br/>
 上圖為整個系統的介面關聯圖。
 
 
@@ -28,3 +28,6 @@
 
 6.忘記密碼<br/>
 ![6](https://github.com/briansbotlab/Java_Project/blob/master/userMangementSystem/img/6.PNG)<br/>
+
+7.修改密碼<br/>
+![7](https://github.com/briansbotlab/Java_Project/blob/master/userMangementSystem/img/7.PNG)<br/>
