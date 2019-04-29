@@ -11,7 +11,6 @@ public class Controller {
 	private static Controller aController = null; 
 		
 	private Controller() { 
-		
 		setDBinit(); //«Ø¥ßªì©lDB
 		
 		
@@ -41,6 +40,7 @@ public class Controller {
 	Selfinfo_gui selfinfo = null;
 	CreateAccount_gui createaccount = null;
 	ForgetPass_gui forgetpass = null;
+	ChangePass_gui changepass = null;
 	
 	public void setLogin_gui(Login_gui gui) {
 		this.login = gui;
@@ -64,6 +64,10 @@ public class Controller {
 	
 	public void setCreateAccount_gui(CreateAccount_gui gui) {
 		this.createaccount = gui;
+	}
+	
+	public void setChangePass_gui(ChangePass_gui gui) {
+		this.changepass = gui;
 	}
 	
 	public Login_gui getLogin_gui() {
@@ -106,6 +110,13 @@ public class Controller {
 			this.forgetpass = new ForgetPass_gui();
 		}
 		return this.forgetpass;
+	}
+	
+	public ChangePass_gui getChangePass_gui() {
+		if(this.changepass == null) {
+			this.changepass = new ChangePass_gui();
+		}
+		return this.changepass;
 	}
 	
 	
@@ -178,7 +189,11 @@ public class Controller {
 	}
 	
 	public void setDBinit() {
-		dBMger.initDB();
+		if(dBMger.checkDBExists()) {
+			//do nothing
+		}else {
+			dBMger.initDB();
+		}
 	}
 	
 	public void checkUser() {
@@ -186,22 +201,25 @@ public class Controller {
 		String dBPassword = "";
 		if(!(isNullOrEmpty(this.userAccount))) {
 			dBPassword = dBMger.getPassWord(this.userAccount);
+			if(dBPassword == null) {
+				JOptionPane.showMessageDialog(null, "Account Incorrect!" , "System Notice",JOptionPane.PLAIN_MESSAGE);
+			}else if(dBPassword.equals(this.userPassword)) {
+				JOptionPane.showMessageDialog(null, "Login Success!" , "System Notice",JOptionPane.PLAIN_MESSAGE);
+				
+				load_UserLevel();
+				load_UserName();
+				
+				checkLevel();
+				
+				gui_Control("selfinfo");
+			}else {
+				JOptionPane.showMessageDialog(null, "Password Incorrect!" , "System Notice",JOptionPane.PLAIN_MESSAGE);
+			}
 		}else {
 			JOptionPane.showMessageDialog(null, "Please Input Your Password!" , "System Notice",JOptionPane.PLAIN_MESSAGE);
 		}
 		
-		if(dBPassword.equals(this.userPassword)) {
-			JOptionPane.showMessageDialog(null, "Login Success!" , "System Notice",JOptionPane.PLAIN_MESSAGE);
-			
-			load_UserLevel();
-			load_UserName();
-			
-			checkLevel();
-			
-			gui_Control("selfinfo");
-		}else {
-			JOptionPane.showMessageDialog(null, "Login Fail!" , "System Notice",JOptionPane.PLAIN_MESSAGE);
-		}
+		
 		
 	}
 	
@@ -380,6 +398,7 @@ public class Controller {
 		this.currentGUI = gui_Name;
 	}
 	
+	
 	private void setGUI_Visible_false(String gui_Name) {
 		switch (gui_Name) {
         case "login":
@@ -411,6 +430,11 @@ public class Controller {
         	forgetpass.setVisible(false);
         	forgetpass = null;
         	//System.out.println("setGUI_Visible_false  :   forgetpass");
+        	break;
+        case "changepass":
+        	changepass.setVisible(false);
+        	changepass = null;
+        	//System.out.println("setGUI_Visible_false  :   changepass");
         	break;	
         default:
         	System.out.println("get gui error!");
@@ -475,6 +499,15 @@ public class Controller {
         	
         	forgetpass.setVisible(true);
         	break;	
+        case "changepass":
+        	setGUI_Visible_false(getCurrentGUI());
+        	
+        	setCurrentGUI("changepass");
+        	
+        	changepass = getChangePass_gui();
+        	
+        	changepass.setVisible(true);
+        	break;		
         default:
         	System.out.println("get gui error!");
         }

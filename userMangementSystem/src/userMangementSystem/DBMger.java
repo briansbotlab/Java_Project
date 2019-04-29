@@ -53,8 +53,13 @@ public class DBMger {
 	                   " LEVEL        INTEGER NOT NULL, " + 
 	                   " PASSWORD       CHAR(20) NOT NULL)"; 
 	      stmt.executeUpdate(sql);
+	      
 	      stmt.close();
+	 
 	      c.close();
+	      
+	      createData("SuperUser","root","root",3);
+	      
 	    } catch ( Exception e ) {
 	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	      //System.exit(0);
@@ -364,6 +369,33 @@ public class DBMger {
 	    System.out.println("Records select successfully");
 	    return model;
 	}
+	
+	public boolean checkDBExists(){
+		boolean exists = false;
+		Connection c = null;
+	    Statement stmt = null;
+	    try {
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection("jdbc:sqlite:UserData.sqlite");
+	      System.out.println("Opened database successfully");
+
+	      stmt = c.createStatement();
+	      String query = "SELECT COUNT(*) FROM USERS WHERE LEVEL > 0;";
+	      ResultSet rs = stmt.executeQuery(query);                  
+	      rs.next();
+	      exists = rs.getInt("COUNT(*)") > 0;
+	      
+	      stmt.close();
+	      c.close();
+	    } catch ( Exception e ) {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      //System.exit(0);
+	    }
+	    
+	    return exists;
+	    
+	}
+	
 	
 	
 }

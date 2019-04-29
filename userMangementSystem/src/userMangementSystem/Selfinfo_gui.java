@@ -119,6 +119,17 @@ public class Selfinfo_gui extends JFrame {
 		contentPane.add(lblLevelText);
 		lblLevelText.setText(Integer.toString(aController.getUserLevel()));
 		
+		JButton btnCP = new JButton("Change Pwd");
+		btnCP.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				aController.gui_Control("changepass");
+			}
+		});
+		btnCP.setFont(new Font("·L³n¥¿¶ÂÅé", Font.PLAIN, 24));
+		btnCP.setBounds(237, 165, 190, 40);
+		contentPane.add(btnCP);
+		
 		aController.setSelfinfo_gui(this);
 		
 	}
